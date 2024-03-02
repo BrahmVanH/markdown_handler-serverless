@@ -27,3 +27,7 @@ lambda/dist
 codegen.yml
 
 
+
+# Local Netlify folder
+.netlify
+dist
