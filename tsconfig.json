@@ -11,5 +11,5 @@
 		"esModuleInterop": true,
 		"outDir": "./dist"
 	},
-	"include": ["./*.ts", "./**/*.ts", "./**/*.js"]
+	"include": ["./*.ts", "./**/*.ts", "./**/*.js", "netlify/functions/actions/router.mts", "netlify/functions/actions/index.ts", "netlify/functions/actions/EntryModel.mts"]
 }
