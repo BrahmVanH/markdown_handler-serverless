@@ -10,11 +10,11 @@ const app = express();
 
 // const router = express.Router();
 
-interface IRequest extends Request {
-	headers: {
-		host?: string;
-	};
-}
+// interface IRequest extends Request {
+// 	headers: {
+// 		host?: string;
+// 	};
+// }
 
 // const getAllowedOrigins = (req: IRequest, res: Response, next: NextFunction) => {
 // 	console.log('getting allowed origins...');
