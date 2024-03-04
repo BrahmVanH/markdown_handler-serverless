@@ -5,7 +5,7 @@ const sendForm = async (file: File) => {
 		const formData = new FormData();
 		formData.append('file', file);
 
-		const response = await axios.post('.netlify/functions', formData, {
+		const response = await axios.post('/.netlify/functions/upload', formData, {
 			headers: {
 				'Content-Type': 'multipart/form-data',
 			},
