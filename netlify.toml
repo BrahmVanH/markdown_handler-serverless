@@ -3,11 +3,6 @@
   publish = "client/dist"
   functions = "functions/dist"
 
-[[headers]]
-  for = "/*.ts"
-    [headers.values]
-    Content-Type = "application/javascript"
-
 [build]
   command = "npm run build"
   publish = "client/dist"
