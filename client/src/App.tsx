@@ -2,9 +2,6 @@ import React, { useEffect } from 'react';
 import sendForm from '../utils/axios';
 import { useForm, FieldValues } from 'react-hook-form';
 
-interface IFormInput {
-	file: File;
-}
 const App: React.FC = () => {
 	console.log(React);
 
@@ -13,15 +10,13 @@ const App: React.FC = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
+		formState: { errors},
 	} = useForm<FieldValues>();
 
-	
-
 	const handleSendForm = async (formInput: FieldValues) => {
-		if (!formInput.file){
+		if (!formInput.file) {
 			throw new Error('file is required');
-		};
+		}
 		const file: File = formInput.file;
 		console.log('file', file);
 		const response = await sendForm(file);
@@ -35,10 +30,10 @@ const App: React.FC = () => {
 		}
 	}, [formInput]);
 
-
 	return (
 		<form onSubmit={handleSubmit((data) => setFormInput(data))}>
 			<input type='file' {...register('file', { required: { value: true, message: 'all fields are required' } })} />
+			{errors.file && errors.file.type === 'required' && <span>file is required</span>}
 			<button type='submit'>Submit</button>
 		</form>
 	);
