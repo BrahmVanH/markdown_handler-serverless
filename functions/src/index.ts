@@ -16,10 +16,11 @@ interface IRequest extends Request {
 }
 
 const getAllowedOrigins = (req: IRequest, res: Response, next: NextFunction) => {
-	// console.log('req.headers', req.headers);
-	const allowedOrigins = ['localhost:8888', 'https://markdown-handler.netlify.app'];
+	console.log('getting allowed origins...');
+	console.log('req.headers', req.headers);
+	const allowedOrigins = ['localhost:8888', 'https://markdown-handler.netlify.app', 'https://markdown-handler.netlify.app'];
 	const host = req.headers.host ?? '';
-	// console.log('host', host);
+	console.log('host', host);
 
 	if (allowedOrigins.includes(host)) {
 		next();
@@ -35,5 +36,3 @@ const handler = serverless(app);
 
 export { handler };
 
-// router.get('/', (req: Request, res: Response) => console.log('Hello from Express.js!'));
-// app.use('api', router);

@@ -10,7 +10,7 @@ const App: React.FC = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors},
+		formState: { errors },
 	} = useForm<FieldValues>();
 
 	const handleSendForm = async (formInput: FieldValues) => {
@@ -31,7 +31,7 @@ const App: React.FC = () => {
 	}, [formInput]);
 
 	return (
-		<form onSubmit={handleSubmit((data) => setFormInput(data))}>
+		<form style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} onSubmit={handleSubmit((data) => setFormInput(data))}>
 			<input type='file' {...register('file', { required: { value: true, message: 'all fields are required' } })} />
 			{errors.file && errors.file.type === 'required' && <span>file is required</span>}
 			<button type='submit'>Submit</button>

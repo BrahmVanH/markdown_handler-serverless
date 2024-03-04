@@ -3,7 +3,7 @@ import connectToDb from './mongo/db';
 import getActionsModel from './EntryModel';
 import multer from 'multer';
 
-const upload = multer();
+const upload = multer({ dest: 'uploads/' });
 
 const router = express.Router();
 
@@ -33,6 +33,7 @@ const uploadFile = async (req: Request, res: Response, fileData: string) => {
 // Upload route to handle file uploads, restrict to text/markdown files and pass to uploadFile function
 
 router.post('/upload', upload.single('file'), (req: Request, res: Response) => {
+	console.log('uploading file');
 	try {
 		if (!req.file) {
 			res.status(400).json({ error: 'Bad Request' });
