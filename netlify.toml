@@ -1,12 +1,10 @@
 [dev]
   command = "npm run build"
   publish = "client/dist"
-  functions = "functions/dist"
 
 [build]
   command = "npm run build"
   publish = "client/dist"
-  functions = "functions/dist" 
 
 [functions]
   directory = "functions/dist"
