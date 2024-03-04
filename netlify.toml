@@ -1,7 +1,7 @@
 [dev]
   command = "npm run build"
   publish = "client/dist"
-  functions = "functions/dist/src"
+  functions = "functions/dist"
 
 [[headers]]
   for = "/*.ts"
@@ -11,7 +11,7 @@
 [build]
   command = "npm run build"
   publish = "client/dist"
-  functions = "functions/dist/src" 
+  functions = "functions/dist" 
 
 [functions]
   directory = "functions/"
