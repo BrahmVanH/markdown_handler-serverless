@@ -57,6 +57,7 @@ router.post('/upload', upload.single('file'), async (req: Request, res: Response
 });
 
 router.get('/', (req: Request, res: Response) => {
+	console.log('test route endpoint hit');
 	res.status(200).json({ message: 'test route' });
 });
 

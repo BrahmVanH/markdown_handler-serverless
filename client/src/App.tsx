@@ -5,6 +5,19 @@ import { useForm, FieldValues } from 'react-hook-form';
 const App: React.FC = () => {
 	console.log(React);
 
+	const testFetch = async () => {
+		console.log('making fetch call');
+		const response = await fetch('/.netlify/functions/', {
+			method: 'GET',
+		});
+		const data = await response.json();
+		console.log('data', data);
+	};
+
+	useEffect(() => {
+		testFetch();
+	}, []);
+
 	const [formInput, setFormInput] = React.useState<FieldValues | null>(null);
 
 	const {
