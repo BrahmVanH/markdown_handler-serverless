@@ -1,6 +1,5 @@
 [dev]
   command = "npm run build"
-  publish = "client/dist"
   functions = "functions/dist/src"
 
 [[headers]]

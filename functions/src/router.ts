@@ -32,7 +32,7 @@ const uploadFile = async (req: Request, res: Response, fileData: string) => {
 
 // Upload route to handle file uploads, restrict to text/markdown files and pass to uploadFile function
 
-router.post('/upload', upload.single('file'), (req: Request, res: Response) => {
+router.post('/upload', upload.single('file'), async (req: Request, res: Response) => {
 	console.log('uploading file');
 	try {
 		if (!req.file) {
@@ -54,6 +54,10 @@ router.post('/upload', upload.single('file'), (req: Request, res: Response) => {
 		console.error('Error uploading file', error);
 		res.status(500).json({ error: 'Internal Server Error' });
 	}
+});
+
+router.get('/', (req: Request, res: Response) => {
+	res.status(200).json({ message: 'test route' });
 });
 
 export default router;
