@@ -1,29 +1,14 @@
 import { Model, Schema, model, models } from 'mongoose';
 
 export interface IEntry {
-	url: string;
-	like: number;
-	share: number;
-	subscribe: number;
+	text: string;
 }
 
 const actionsSchema: Schema = new Schema<IEntry>({
-	url: {
+	text: {
 		type: String,
 		required: true,
 		unique: true,
-	},
-	like: {
-		type: Number,
-		default: 0,
-	},
-	share: {
-		type: Number,
-		default: 0,
-	},
-	subscribe: {
-		type: Number,
-		default: 0,
 	},
 });
 

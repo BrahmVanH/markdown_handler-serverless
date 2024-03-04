@@ -3,10 +3,10 @@ import serverless from 'serverless-http';
 import dotenv from 'dotenv';
 import router from './router';
 
-
 dotenv.config();
 
 const app = express();
+
 // const router = express.Router();
 
 interface IRequest extends Request {
