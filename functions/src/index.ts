@@ -1,4 +1,5 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request } from 'express';
+// , Response, NextFunction
 import serverless from 'serverless-http';
 import dotenv from 'dotenv';
 import router from './router';
@@ -18,7 +19,7 @@ interface IRequest extends Request {
 // const getAllowedOrigins = (req: IRequest, res: Response, next: NextFunction) => {
 // 	console.log('getting allowed origins...');
 // 	console.log('req.headers', req.headers);
-// 	const allowedOrigins = ['localhost:8888', 'https://markdown-handler.netlify.app', 'markdown-handler.netlify.app', 
+// 	const allowedOrigins = ['localhost:8888', 'https://markdown-handler.netlify.app', 'markdown-handler.netlify.app',
 // 	];
 // 	const host = req.headers.host ?? '';
 // 	console.log('host', host);
@@ -36,4 +37,3 @@ app.use('/.netlify/functions', router);
 const handler = serverless(app);
 
 export { handler };
-
