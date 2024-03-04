@@ -3,9 +3,8 @@ import serverless from 'serverless-http';
 import dotenv from 'dotenv';
 import router from './router';
 
-// import router from './router.mjs';
 
-// dotenv.config();
+dotenv.config();
 
 const app = express();
 // const router = express.Router();
@@ -17,10 +16,10 @@ interface IRequest extends Request {
 }
 
 const getAllowedOrigins = (req: IRequest, res: Response, next: NextFunction) => {
-	console.log('req.headers', req.headers);
+	// console.log('req.headers', req.headers);
 	const allowedOrigins = ['localhost:8888', 'https://markdown-handler.netlify.app'];
 	const host = req.headers.host;
-	console.log('host', host);
+	// console.log('host', host);
 
 	if (allowedOrigins.includes(host)) {
 		next();
@@ -30,15 +29,6 @@ const getAllowedOrigins = (req: IRequest, res: Response, next: NextFunction) => 
 };
 app.use(getAllowedOrigins);
 
-// router.get('/', (req, res) => {
-// 	res.writeHead(200, { 'Content-Type': 'text/html' });
-// 	res.write('Hello, actionszzzz');
-// 	res.end();
-// });
-
-// router.get('/like', (req, res) => {
-// 	res.status(200).json({ action: 'like' });
-// });
 
 app.use('/.netlify/functions/actions', router);
 
