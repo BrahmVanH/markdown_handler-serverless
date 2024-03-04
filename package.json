@@ -1,35 +1,18 @@
 {
-	"name": "markdown-handler",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"type": "module",
-	"scripts": {
-		"dev": "cd client && vite",
-		"postinstall": "cd client && npm install",
-		"build": "tsc && cd client && tsc && vite build",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"@netlify/functions": "^2.6.0",
-		"@types/express": "^4.17.21",
-		"dotenv": "^16.4.5",
-		"express": "^4.18.3",
-		"mongoose": "^8.2.0",
-		"multer": "^1.4.5-lts.1",
-		"serverless-http": "^3.2.0"
-	},
-	"devDependencies": {
-		"@types/multer": "^1.4.11",
-		"@types/node": "^20.11.24",
-		"@typescript-eslint/eslint-plugin": "^7.0.2",
-		"@typescript-eslint/parser": "^7.0.2",
-		"@vitejs/plugin-react": "^4.2.1",
-		"eslint": "^8.56.0",
-		"eslint-plugin-react-hooks": "^4.6.0",
-		"eslint-plugin-react-refresh": "^0.4.5"
-	}
+  "name": "markdown-handler",
+  "version": "1.0.0",
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cd client && npm run dev",
+    "build": "cd functions && npm run build && cd ../client && npm run build",
+    "install": "cd functions && npm install && cd ../client && npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@netlify/functions": "^2.6.0"
+  }
 }

@@ -3,11 +3,16 @@
   publish = "client"
 
 [[headers]]
-  for = "/*.js"
+  for = "/*.ts"
     [headers.values]
     Content-Type = "application/javascript"
 
+[build]
+  command = "npm run build"
+  publish = "client/dist"
+  functions = "functions/dist/src" 
+
 [functions]
-  directory = "netlify/functions/"
-  included_files = ["actions/index.js"]
+  directory = "functions/"
+  included_files = ["src/index.ts"]
 
