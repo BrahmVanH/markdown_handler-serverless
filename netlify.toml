@@ -14,6 +14,6 @@
   functions = "functions/dist" 
 
 [functions]
-  directory = "functions/"
-  included_files = ["src/index.ts"]
+  directory = "functions/dist"
+  included_files = ["index.js"]
 
