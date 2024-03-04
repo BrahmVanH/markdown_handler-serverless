@@ -29,7 +29,7 @@ const getAllowedOrigins = (req: IRequest, res: Response, next: NextFunction) => 
 };
 app.use(getAllowedOrigins);
 
-app.use('/.netlify/functions/actions', router);
+app.use('/.netlify/functions', router);
 
 const handler = serverless(app);
 
