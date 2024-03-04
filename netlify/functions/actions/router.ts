@@ -30,9 +30,12 @@ const uploadFile = async (req: Request, res: Response, fileData: string) => {
 
 router.post('/upload', upload.single('file'), (req: Request, res: Response) => {
 	try {
-		const fileData = req.file.buffer.toString('utf8');
+		console.log('req.file', req.file);
+		const file = req.file;
+		const fileData = file.buffer.toString('utf8');
+		const type = file.mimetype;
 
-		if (!fileData) {
+		if (!fileData || !type || type !== 'text/markdown') {
 			res.status(400).json({ error: 'Bad Request' });
 		} else {
 			uploadFile(req, res, fileData);
