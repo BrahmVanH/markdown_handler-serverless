@@ -8,7 +8,7 @@ interface IFormInput {
 const App: React.FC = () => {
 	console.log(React);
 
-	const [formInput, setFormInput] = React.useState<IFormInput | null>(null);
+	const [formInput, setFormInput] = React.useState<FieldValues | null>(null);
 
 	const {
 		register,
@@ -16,12 +16,12 @@ const App: React.FC = () => {
 		formState: { errors },
 	} = useForm<FieldValues>();
 
-	const handleSetFormInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const file: File = e.target.files?.[0] as File;
-		setFormInput(file);
-	};
+	
 
-	const handleSendForm = async (formInput: IFormInput) => {
+	const handleSendForm = async (formInput: FieldValues) => {
+		if (!formInput.file){
+			throw new Error('file is required');
+		};
 		const file: File = formInput.file;
 		console.log('file', file);
 		const response = await sendForm(file);
@@ -35,9 +35,9 @@ const App: React.FC = () => {
 		}
 	}, [formInput]);
 
-	
+
 	return (
-		<form encType='multipart/form-data'>
+		<form onSubmit={handleSubmit((data) => setFormInput(data))}>
 			<input type='file' {...register('file', { required: { value: true, message: 'all fields are required' } })} />
 			<button type='submit'>Submit</button>
 		</form>
