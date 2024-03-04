@@ -1,3 +1,13 @@
+[dev]
+  command = "npm run dev"
+  publish = "client"
+
+[[headers]]
+  for = "/*.js"
+    [headers.values]
+    Content-Type = "application/javascript"
+
 [functions]
   directory = "netlify/functions/"
-  included_files = ["actions/index.ts"]
+  included_files = ["actions/index.js"]
+

@@ -3,9 +3,11 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
+	"type": "module",
 	"scripts": {
-		"build": "tsc",
-		"dev": "tsc && netlify dev",
+		"dev": "cd client && vite",
+		"postinstall": "cd client && npm install",
+		"build": "tsc && cd client && tsc && vite build",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
@@ -18,11 +20,16 @@
 		"express": "^4.18.3",
 		"mongoose": "^8.2.0",
 		"multer": "^1.4.5-lts.1",
-		"serverless-http": "^3.2.0",
-		"typescript": "^5.3.3"
+		"serverless-http": "^3.2.0"
 	},
 	"devDependencies": {
 		"@types/multer": "^1.4.11",
-		"@types/node": "^20.11.24"
+		"@types/node": "^20.11.24",
+		"@typescript-eslint/eslint-plugin": "^7.0.2",
+		"@typescript-eslint/parser": "^7.0.2",
+		"@vitejs/plugin-react": "^4.2.1",
+		"eslint": "^8.56.0",
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"eslint-plugin-react-refresh": "^0.4.5"
 	}
 }
