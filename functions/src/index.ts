@@ -32,7 +32,7 @@ const app = express();
 // };
 // app.use(getAllowedOrigins);
 
-app.use('/.netlify/functions', router);
+app.use('/functions', router);
 
 const handler = serverless(app);
 

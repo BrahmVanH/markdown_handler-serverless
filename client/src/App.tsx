@@ -7,7 +7,7 @@ const App: React.FC = () => {
 
 	const testFetch = async () => {
 		console.log('making fetch call');
-		const response = await fetch('.netlify/functions/', {
+		const response = await fetch('/functions/', {
 			method: 'GET',
 		});
 		const data = await response.json();
