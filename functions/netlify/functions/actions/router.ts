@@ -35,7 +35,7 @@ const uploadFile = async (req: Request, res: Response, fileData: string) => {
 // Upload route to handle file uploads, restrict to text/markdown files and pass to uploadFile function
 
 router.post('/', upload.single('file'), async (req, res) => {
-	console.log('uploading file');
+	console.log('uploading file', req);
 	try {
 		if (!req.file) {
 			console.log('no req.file');

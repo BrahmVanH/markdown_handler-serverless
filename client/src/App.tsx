@@ -1,72 +1,10 @@
 import React, { useEffect } from 'react';
-// import sendForm from '../utils/axios';
+import { sendForm } from '../utils/API';
 import { useForm, FieldValues } from 'react-hook-form';
 
 const App: React.FC = () => {
 	console.log(React);
 
-	const testGet = async () => {
-		console.log('test');
-		try {
-			const response = await fetch('/.netlify/functions/actions/', {
-				method: 'GET',
-			});
-			// const data = await response;
-			if (!response.ok) {
-				throw new Error('error in sending form');
-			} else {
-				console.log('response', response);
-			}
-		} catch (error) {
-			console.error('error', error);
-			throw new Error('error in sending form');
-		}
-	};
-
-	// const testPost = async () => {
-	// 	console.log('test');
-	// 	try {
-	// 		const testString = 'test string';
-	// 		const response = await fetch('/.netlify/functions/actions/', {
-	// 			method: 'POST',
-	// 			body: JSON.stringify({ testString }),
-	// 			headers: {
-	// 				'Content-Type': 'application/json',
-	// 			},
-	// 		});
-	// 		if (!response.ok) {
-	// 			console.log('response', response);
-	// 			throw new Error('error in sending form');
-	// 		} else {
-	// 			const data = await response.json();
-	// 			console.log('data', data);
-	// 		}
-	// 	} catch (error) {
-	// 		console.error('error', error);
-	// 		throw new Error('error in sending form');
-	// 	}
-	// };
-
-	const sendForm = async (file: File) => {
-		console.log('making fetch call');
-
-		try {
-			const formData = new FormData();
-			formData.append('file', file);
-
-			return await fetch('/.netlify/functions/actions/', {
-				method: 'POST',
-				body: formData,
-			});
-		} catch (error) {
-			console.error('error', error);
-			throw new Error('error in sending form');
-		}
-	};
-
-	useEffect(() => {
-		testGet();
-	}, []);
 
 	const [formInput, setFormInput] = React.useState<FieldValues | null>(null);
 
