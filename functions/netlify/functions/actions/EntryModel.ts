@@ -1,15 +1,22 @@
 import { Model, Schema, model, models } from 'mongoose';
 
 export interface IEntry {
+	date: Date;
 	text: string;
 }
 
 const actionsSchema: Schema = new Schema<IEntry>({
+	date: {
+		type: Date,
+		default: Date.now,
+	},
 	text: {
 		type: String,
 		required: true,
 		unique: true,
 	},
+
+	
 });
 
 const getActionsModel = async () => {

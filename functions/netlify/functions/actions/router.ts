@@ -42,10 +42,9 @@ router.post('/', upload.single('file'), async (req, res) => {
 			return;
 		}
 
-		const file = req.file;
-		const fileData = file.buffer.toString('utf8');
+		const fileData = req.file.buffer.toString('utf8');
 		console.log('fileData', fileData);
-		const type = file.mimetype;
+		const type = req.file.mimetype;
 
 		if (!fileData || !type || type !== 'text/markdown') {
 			console.log('no fileData or type');
