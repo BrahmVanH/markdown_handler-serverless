@@ -16,7 +16,7 @@ interface IRequest extends Request {
 }
 
 const getAllowedOrigins = (req: IRequest, res: Response, next: NextFunction) => {
-	const allowedOrigins = ['localhost:8888', 'https://markdown-handler.netlify.app', 'markdown-handler.netlify.app', 'main--markdown-handler.netlify.app/'];
+	const allowedOrigins = ['localhost:8888', 'https://markdown-handler.netlify.app', 'markdown-handler.netlify.app', 'main--markdown-handler.netlify.app/', 'https://main--markdown-handler.netlify.app/', 'https://main--markdown-handler.netlify.app'];
 	const host = req.headers.host ?? '';
 	console.log('host', host);
 
@@ -27,7 +27,6 @@ const getAllowedOrigins = (req: IRequest, res: Response, next: NextFunction) => 
 	}
 };
 app.use(getAllowedOrigins);
-
 
 
 app.use('/.netlify/functions/actions', router);
