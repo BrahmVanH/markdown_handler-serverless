@@ -10,23 +10,12 @@
 		"moduleResolution": "node",
 		"skipLibCheck": true,
 		"esModuleInterop": true,
-		"outDir": "./dist",
+		"outDir": "./dist/netlify/functions/actions",
 
 		/* Linting */
 		"strict": true,
 		"noUnusedLocals": true,
 		"noFallthroughCasesInSwitch": true
 	},
-	"include": [
-		"./*.ts",
-		"./**/*.ts",
-		"./**/*.js",
-		"netlify/functions/actions/router.ts",
-		"netlify/functions/actions/index.ts",
-		"netlify/functions/actions/EntryModel.ts",
-		"client/src/**/*.ts",
-		"client/src/*.tsx",
-		"client/src/*.ts",
-		"client/src/**/*.tsx"
-	]
+	"include": ["./*.ts", "./**/*.ts", "./**/*.js", "netlify/functions/actions/router.ts", "netlify/functions/actions/index.ts", "netlify/functions/actions/EntryModel.ts"]
 }

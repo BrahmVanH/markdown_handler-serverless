@@ -1,9 +1,11 @@
 [dev]
   publish = "client/dist"
+
+
   
 
 [functions]
-  directory = "functions/netlify/functions"
-  included_files = ["actions/index.ts"]
+  directory = "functions/dist/netlify/functions"
+  included_files = ["actions/index.js"]
 
 
