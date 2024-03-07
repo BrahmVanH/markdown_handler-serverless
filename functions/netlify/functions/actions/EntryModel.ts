@@ -9,7 +9,6 @@ const actionsSchema: Schema = new Schema<IEntry>({
 	text: {
 		type: String,
 		required: true,
-		unique: true,
 	},
 
 	
