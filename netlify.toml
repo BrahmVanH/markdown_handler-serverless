@@ -1,7 +1,9 @@
 [dev]
   publish = "client/dist"
 
-
+[production]
+  command = "npm run build"
+  publish = "client/dist"
   
 
 [functions]
