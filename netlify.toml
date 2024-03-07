@@ -1,8 +1,9 @@
-[build]
-  command = "npm run build"
+[dev]
   publish = "client/dist"
+  
 
 [functions]
-  directory = "functions/dist"
-  included_files = ["index.js"]
+  directory = "functions/netlify/functions"
+  included_files = ["actions/index.ts"]
+
 

@@ -5,17 +5,22 @@ import { useForm, FieldValues } from 'react-hook-form';
 const App: React.FC = () => {
 	console.log(React);
 
-	const testFetch = async () => {
-		console.log('making fetch call');
-		const response = await fetch('/functions/', {
-			method: 'GET',
-		});
-		const data = await response.json();
-		console.log('data', data);
+	const test = async () => {
+		console.log('test');
+		try {
+			const response = await fetch('/.netlify/functions/actions/', {
+				method: 'GET',
+			});
+			const data = await response.json();
+			console.log('data', data);
+		} catch (error) {
+			console.error('error', error);
+			throw new Error('error in sending form');
+		}
 	};
 
 	useEffect(() => {
-		testFetch();
+		test();
 	}, []);
 
 	const [formInput, setFormInput] = React.useState<FieldValues | null>(null);

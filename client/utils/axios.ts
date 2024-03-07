@@ -22,11 +22,10 @@
 
 const sendForm = async (file: File) => {
 	try {
-
 		const formData = new FormData();
 		formData.append('file', file);
 		console.log('file', file);
-		return await fetch('/.netlify/functions/upload', {
+		return await fetch('/.netlify/functions/actions', {
 			method: 'POST',
 			body: formData,
 		});
@@ -35,5 +34,7 @@ const sendForm = async (file: File) => {
 		throw new Error('error in sending form');
 	}
 };
+
+
 
 export default sendForm;
