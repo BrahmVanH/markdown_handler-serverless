@@ -32,4 +32,9 @@ codegen.yml
 .netlify
 dist
 
+netlify/functions/actions/*.js
+netlify/functions/actions/*.js.map
+netlify/functions/actions/mongo/*.js
+
 netlify.toml
+

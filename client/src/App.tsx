@@ -8,6 +8,20 @@ const App: React.FC = () => {
 
 	const [formInput, setFormInput] = React.useState<FieldValues | null>(null);
 
+	const testGet = async () => {
+		try {
+			const response = await fetch('/.netlify/functions/actions');
+			const data = await response.json();
+			console.log('data', data);
+		} catch (error) {
+			console.error('error', error);
+		}
+	}
+
+	useEffect(() => {
+		testGet().catch((error) => console.error('error', error));
+	}, []);
+
 	const {
 		register,
 		handleSubmit,
