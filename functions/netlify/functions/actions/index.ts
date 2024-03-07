@@ -2,7 +2,6 @@ import express, { Request, Response, NextFunction } from 'express';
 import serverless from 'serverless-http';
 import dotenv from 'dotenv';
 import router from './router';
-import cors from 'cors';
 
 
 dotenv.config();
