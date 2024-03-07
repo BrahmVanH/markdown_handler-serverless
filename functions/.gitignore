@@ -35,6 +35,8 @@ dist
 netlify/functions/actions/*.js
 netlify/functions/actions/*.js.map
 netlify/functions/actions/mongo/*.js
+netlify/functions/actions/mongo/*.js.map
+
 
 netlify.toml
 
