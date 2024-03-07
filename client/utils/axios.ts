@@ -21,6 +21,7 @@
 // };
 
 const sendForm = async (file: File) => {
+	console.log('making fetch call');
 	try {
 		const formData = new FormData();
 		formData.append('file', file);

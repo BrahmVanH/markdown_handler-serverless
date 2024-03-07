@@ -1,18 +1,65 @@
 import React, { useEffect } from 'react';
-import sendForm from '../utils/axios';
+// import sendForm from '../utils/axios';
 import { useForm, FieldValues } from 'react-hook-form';
 
 const App: React.FC = () => {
 	console.log(React);
 
-	const test = async () => {
+	const testGet = async () => {
 		console.log('test');
 		try {
 			const response = await fetch('/.netlify/functions/actions/', {
 				method: 'GET',
 			});
-			const data = await response.json();
-			console.log('data', data);
+			// const data = await response;
+			if (!response.ok) {
+				throw new Error('error in sending form');
+			} else {
+				console.log('response', response);
+			}
+		} catch (error) {
+			console.error('error', error);
+			throw new Error('error in sending form');
+		}
+	};
+
+	const testPost = async () => {
+		console.log('test');
+		try {
+			const testString = 'test string';
+			const response = await fetch('/.netlify/functions/actions/', {
+				method: 'POST',
+				body: JSON.stringify({ testString }),
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
+			if (!response.ok) {
+				console.log('response', response);
+				throw new Error('error in sending form');
+			} else {
+				const data = await response.json();
+				console.log('data', data);
+			}
+		} catch (error) {
+			console.error('error', error);
+			throw new Error('error in sending form');
+		}
+	};
+
+	const sendForm = async (file: File) => {
+		console.log('making fetch call');
+		try {
+			const formData = new FormData();
+			formData.append('file', file);
+
+			return await fetch('/.netlify/functions/actions/', {
+				method: 'POST',
+				body: formData,
+				headers: {
+					'Content-Type': 'multipart/form-data',
+				},
+			});
 		} catch (error) {
 			console.error('error', error);
 			throw new Error('error in sending form');
@@ -20,7 +67,8 @@ const App: React.FC = () => {
 	};
 
 	useEffect(() => {
-		test();
+		testGet();
+		testPost();
 	}, []);
 
 	const [formInput, setFormInput] = React.useState<FieldValues | null>(null);
@@ -32,19 +80,27 @@ const App: React.FC = () => {
 	} = useForm<FieldValues>();
 
 	const handleSendForm = async (formInput: FieldValues) => {
-		if (!formInput.file) {
-			throw new Error('file is required');
+		try {
+			if (!formInput.file) {
+				throw new Error('file is required');
+			}
+			const file: File = formInput.file;
+			console.log('file', file);
+			const response = await sendForm(file);
+			if (!response.ok) {
+				throw new Error('error in sending form');
+			} else {
+				console.log('response', response);
+			}
+		} catch (error) {
+			console.error('error', error);
 		}
-		const file: File = formInput.file;
-		console.log('file', file);
-		const response = await sendForm(file);
-		console.log('response', response);
 	};
 
 	useEffect(() => {
 		if (formInput) {
 			console.log('formInput', formInput);
-			handleSendForm(formInput);
+			handleSendForm(formInput).catch((error) => console.error('error', error));
 		}
 	}, [formInput]);
 

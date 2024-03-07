@@ -1,13 +1,13 @@
 import express, { Request, Response } from 'express';
 import serverless from 'serverless-http';
 import dotenv from 'dotenv';
-// import router from './router';
+import router from './router';
 
 dotenv.config();
 
 const app = express();
 
-const router = express.Router();
+// const router = express.Router();
 
 // interface IRequest extends Request {
 // 	headers: {
@@ -31,12 +31,7 @@ const router = express.Router();
 // };
 // app.use(getAllowedOrigins);
 
-router.get('/', (req, res) => {
-  console.log('it at least got into the test route');
-	res.writeHead(200, { 'Content-Type': 'text/html' });
-	res.write('Hello, actions');
-	res.end();
-});
+
 
 app.use('/.netlify/functions/actions', router);
 
