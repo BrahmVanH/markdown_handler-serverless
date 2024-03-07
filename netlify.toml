@@ -1,10 +1,11 @@
 [dev]
   publish = "client/dist"
 
-[production]
+[build]
   command = "npm run build"
+
+[production]
   publish = "client/dist"
-  
 
 [functions]
   directory = "functions/dist/netlify/functions"

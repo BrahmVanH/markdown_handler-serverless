@@ -17,5 +17,5 @@
 		"noUnusedLocals": true,
 		"noFallthroughCasesInSwitch": true
 	},
-	"include": ["./*.ts", "./**/*.ts", "./**/*.js", "netlify/functions/actions/router.ts", "netlify/functions/actions/index.ts", "netlify/functions/actions/EntryModel.ts"]
+	"include": ["./*.ts", "./**/*.ts", "./**/*.js", "netlify/functions/actions/router.ts", "netlify/functions/actions/index.ts", "netlify/functions/actions/EntryModel.ts", "tests/index.test.mts"]
 }
