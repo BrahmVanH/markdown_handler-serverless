@@ -1,6 +1,7 @@
 import { Model, Schema, model, models } from 'mongoose';
 
 export interface IEntry {
+	
 	text: string;
 }
 

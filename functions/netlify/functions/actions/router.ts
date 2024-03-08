@@ -25,9 +25,33 @@ const uploadFile = async (req: Request, res: Response, fileData: string) => {
 
 		const actionResult = await MongooseModelActions.create({ text: fileData });
 
-		res.status(200).json(actionResult);
+		if (actionResult) {
+			return actionResult;
+		}
 	} catch (error) {
 		console.error('Error uploading file', error);
+		res.status(500).json({ error: 'Internal Server Error' });
+	}
+};
+
+const getEntries = async (req: Request, res: Response) => {
+	try {
+		await connectToDb();
+
+		const MongooseModelActions = await getActionsModel();
+
+		if (!MongooseModelActions) {
+			console.error('Error getting MongooseModelActions');
+			res.status(500).json({ error: 'Internal Server Error' });
+			return;
+		}
+
+		const actionResult = await MongooseModelActions.find({});
+		if (actionResult) {
+			return actionResult;
+		}
+	} catch (error) {
+		console.error('Error getting entries', error);
 		res.status(500).json({ error: 'Internal Server Error' });
 	}
 };
@@ -47,7 +71,7 @@ export const convertFileToBlob = (file: File) => {
 	});
 };
 
-router.post('/', upload.single('file'), async (req, res) => {
+router.post('/entry', upload.single('file'), async (req, res) => {
 	try {
 		if (!req.file) {
 			console.log('no req.file');
@@ -57,20 +81,31 @@ router.post('/', upload.single('file'), async (req, res) => {
 		console.log('req.file', req.file);
 		// const fileData = convertFileToBlob(req.file);
 
-
 		const fileData = req.file.buffer.toString('utf8');
 		const type = req.file.mimetype;
 		console.log('fileData', fileData);
-
 
 		if (!fileData || !type || type !== 'application/octet-stream') {
 			console.log('no fileData or type');
 			res.status(400).json({ error: 'Bad Request' });
 		} else {
-			uploadFile(req, res, fileData);
+			const response = await uploadFile(req, res, fileData);
+			res.status(200).json(response);
 		}
 	} catch (error) {
 		console.error('Error uploading file', error);
+		res.status(500).json({ error: 'Internal Server Error' });
+	}
+});
+
+router.get('/entries', async (req, res) => {
+	try {
+		const response = await getEntries(req, res);
+		if (response) {
+			res.status(200).json(response);
+		}
+	} catch (error) {
+		console.error('Error getting entries', error);
 		res.status(500).json({ error: 'Internal Server Error' });
 	}
 });
