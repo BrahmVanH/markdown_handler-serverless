@@ -33,7 +33,7 @@ const App: React.FC = () => {
 			if (!formInput.file) {
 				throw new Error('file is required');
 			}
-			const file: File = formInput.file;
+			const file: File = formInput.file[0];
 			console.log('file', file);
 			const response = await sendForm(file);
 			if (!response.ok) {

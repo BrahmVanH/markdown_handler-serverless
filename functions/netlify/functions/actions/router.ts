@@ -34,6 +34,19 @@ const uploadFile = async (req: Request, res: Response, fileData: string) => {
 
 // Upload route to handle file uploads, restrict to text/markdown files and pass to uploadFile function
 
+export const convertFileToBlob = (file: File) => {
+	return new Promise<Blob>((resolve, reject) => {
+		const reader = new FileReader();
+		reader.onload = () => {
+			const arrayBuffer = reader.result as ArrayBuffer;
+			const blob = new Blob([arrayBuffer], { type: 'text/markdown' });
+			resolve(blob);
+		};
+		reader.onerror = reject;
+		reader.readAsArrayBuffer(file);
+	});
+};
+
 router.post('/', upload.single('file'), async (req, res) => {
 	try {
 		if (!req.file) {
@@ -41,10 +54,20 @@ router.post('/', upload.single('file'), async (req, res) => {
 			res.status(400).json({ error: 'Bad Request' });
 			return;
 		}
+		console.log('req.file', req.file);
+		// const fileData = convertFileToBlob(req.file);
 
-		const fileData = req.file.buffer.toString('utf8');
-		console.log('fileData', fileData);
-		const type = req.file.mimetype;
+		// console.log('req.file', req.file);
+		// console.log('req.file.buffer', req.file.buffer.toLocaleString());
+
+		// const fileData = req.file.buffer.toString('utf8');
+		// const temp = fileData.split('\n');
+		// console.log('fileData', fileData);
+		// console.log('temp', temp);
+
+		// const type = req.file.mimetype;
+		let fileData = '';
+		let type = '';
 
 		if (!fileData || !type || type !== 'text/markdown') {
 			console.log('no fileData or type');

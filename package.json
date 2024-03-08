@@ -4,8 +4,8 @@
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
   "main": "index.js",
   "scripts": {
-    "dev": "cd client && npm run dev",
     "build": "cd functions && npm run build && cd ../client && npm run build",
+    "dev": "npm run build && netlify dev",
     "install": "cd functions && npm install && cd ../client && npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
