@@ -57,19 +57,13 @@ router.post('/', upload.single('file'), async (req, res) => {
 		console.log('req.file', req.file);
 		// const fileData = convertFileToBlob(req.file);
 
-		// console.log('req.file', req.file);
-		// console.log('req.file.buffer', req.file.buffer.toLocaleString());
 
-		// const fileData = req.file.buffer.toString('utf8');
-		// const temp = fileData.split('\n');
-		// console.log('fileData', fileData);
-		// console.log('temp', temp);
+		const fileData = req.file.buffer.toString('utf8');
+		const type = req.file.mimetype;
+		console.log('fileData', fileData);
 
-		// const type = req.file.mimetype;
-		let fileData = '';
-		let type = '';
 
-		if (!fileData || !type || type !== 'text/markdown') {
+		if (!fileData || !type || type !== 'application/octet-stream') {
 			console.log('no fileData or type');
 			res.status(400).json({ error: 'Bad Request' });
 		} else {
